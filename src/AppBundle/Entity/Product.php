@@ -21,16 +21,9 @@ class Product
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\Length(min="10", minMessage="This value was too short")
+     * @ORM\Column(type="integer")
      */
-    protected $title;
-
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\Email()
-     */
-    protected $email;
+    protected $rangeValue;
 
     /**
      * @return mixed
@@ -43,56 +36,18 @@ class Product
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getRangeValue()
     {
-        return $this->title;
+        return $this->rangeValue;
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $rangeValue
      * @return Product
      */
-    public function setTitle($title)
+    public function setTitle($rangeValue)
     {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     * @return Product
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+        $this->rangeValue = $rangeValue;
 
         return $this;
     }
