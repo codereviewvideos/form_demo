@@ -19,8 +19,7 @@ class FormExampleController extends Controller
 
     $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid())
-    {
+    if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
       $product = $form->getData();
@@ -28,11 +27,32 @@ class FormExampleController extends Controller
       $em->persist($product);
       $em->flush();
 
-      $this->addFlash('success', 'We saved the product with id: ' . $product->getId());
+      $this->addFlash('success', 'We created the product with id: ' . $product->getId());
     }
 
     return $this->render('form-example/index.html.twig', [
       'form' => $form->createView()
     ]);
   }
+
+  /**
+   * @Route("/edit/{product}", name="form_edit_example")
+   */
+   public function formEditExample(Request $request, Product $product)
+   {
+     $form = $this->createForm(ProductType::class, $product);
+
+     $form->handleRequest($request);
+
+     if ($form->isSubmitted() && $form->isValid()) {
+       $em = $this->getDoctrine()->getManager();
+       $em->flush();
+
+       $this->addFlash('success', 'We updated the product with id: ' . $product->getId());
+     }
+
+     return $this->render('form-example/index.html.twig', [
+       'form' => $form->createView()
+     ]);
+   }
 }
